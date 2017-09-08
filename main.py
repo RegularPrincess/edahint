@@ -9,6 +9,7 @@ app = Flask(__name__)
 
 @app.route('/get_hint', methods=['POST'])
 def get_hint():
+    flask
     json_dict = request.get_json()
     return jsonify(json_dict)
 
