@@ -13,6 +13,11 @@ def get_hint():
     return jsonify(json_dict)
 
 
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
+
+
 if __name__ == '__main__':
     # hint = model.compute_hint([' грудк', ' хле', ' яблок', ' сыр ', 'сырок '], 'low')
     # print(hint)
