@@ -1,4 +1,4 @@
-import pymssql
+import pymssql as mysql
 
 
 _connection = None
@@ -23,8 +23,8 @@ class Product:
 
 def _connect():
     global _connection, _cursor
-    _connection = pymssql.connect(server='my-edadeal.database.windows.net', user='my-edadeal@my-edadeal',
-                               password='piknikME000', database='my-edadeal')
+    _connection = mysql.connect(host="my-edadeal.database.windows.net", user='my-edadeal@my-edadeal',
+                                  password='piknikME000', database='my-edadeal')
     _cursor = _connection.cursor()
     # _cursor.execute("SET CHARACTER SET 'utf8'")
     # _cursor.execute("SET SESSION collation_connection = 'utf8_general_ci'")
