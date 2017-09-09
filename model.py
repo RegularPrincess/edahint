@@ -34,6 +34,7 @@ def _connect():
 def _get_permanent_data():
     global _connection, _cursor, _data
     if _connection is None:
+        print("Connecting...")
         _connect()
     _data = []
     _cursor.execute('select * from prods;')

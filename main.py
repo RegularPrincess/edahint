@@ -17,6 +17,7 @@ def get_hint():
 
 @app.route('/')
 def hello_world():
+    model.compute_hint(['e'], 'low')
     return 'Hello, World!'
 
 
