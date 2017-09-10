@@ -9,8 +9,6 @@ app = Flask(__name__)
 
 @app.route('/get_hint', methods=['POST'])
 def get_hint():
-    hint = model.compute_hint([' грудк', ' хле', ' яблок', ' сыр ', 'сырок '], 'low')
-    print(hint)
     json_dict = request.get_json()
     return jsonify(json_dict)
 
