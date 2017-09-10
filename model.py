@@ -23,7 +23,7 @@ class Product:
 
 def _connect():
     global _connection, _cursor
-    _connection = mysql.connect(host="my-edadeal.database.windows.net", user='my-edadeal@my-edadeal',
+    _connection = mysql.connect(server="my-edadeal.database.windows.net", user='my-edadeal@my-edadeal',
                                   password='piknikME000', database='my-edadeal')
     _cursor = _connection.cursor()
     print("Connected!!!!!")
