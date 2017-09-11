@@ -1,10 +1,10 @@
-from edahint_db import db
-
+from edahint_db.db import db
+from json import JSONEncoder
 
 _data = None
 
 
-class Product:
+class Product():
     """Class for representation product"""
 
     def __init__(self, toupl):
@@ -28,6 +28,7 @@ def search_all_match(obj):
     return matches
 
 
+# стоит переписать через min и передачу функции сравнения
 def low_price_prod(matches):
     min_price = matches[0].price
     selected_prod = matches[0]
@@ -38,10 +39,21 @@ def low_price_prod(matches):
     return selected_prod
 
 
+def high_price_prod(matches):
+    max_price = matches[0].price
+    selected_prod = matches[0]
+    for match in matches:
+        if max_price < match.price:
+            max_price = match.price
+            selected_prod = match
+    return selected_prod
+
+
 def compute_hint(list, price_category):
     # возвращает список предложенных продуктов
     global _data
     if _data is None:
+        _data = []
         tuple_data = db.get_inst().get_permanent_data()
         for t in tuple_data:
             _data.append(Product(t))
@@ -51,6 +63,8 @@ def compute_hint(list, price_category):
         matches = search_all_match(obj)
         if len(matches) == 0:
             continue
-        if price_category is 'low':
+        if price_category == 'low':
             selected_prods.append(low_price_prod(matches))
+        if price_category == 'high':
+            selected_prods.append(high_price_prod(matches))
     return selected_prods

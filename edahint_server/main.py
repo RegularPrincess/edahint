@@ -1,4 +1,5 @@
 import model
+import json
 from flask import Flask
 from flask import jsonify
 from flask import request
@@ -16,15 +17,15 @@ def get_short_hint():
 
 @app.route('/get_hint', methods=['POST'])
 def get_hint():
-    # TODO: спарсить полученный жсоооон
-    prods = model.compute_hint([], 'low')
-    # TODO: превратить в жсооон и вернуть
-    return jsonify()
+    json_dict = request.get_json()
+    prods = model.compute_hint(json_dict['products'], json_dict['price_level'])
+    print(prods)
+    return json.dumps([inst.__dict__ for inst in prods])
 
 
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    return 'I work!'
 
 
 if __name__ == '__main__':
