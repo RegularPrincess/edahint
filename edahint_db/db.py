@@ -16,7 +16,7 @@ class db:
 
     def __init__(self):
         print('Connecting...')
-        self.__conn = psycopg2.connect(dbname='my-edadeal', user='postgres', host='localhost')
+        self.__conn = psycopg2.connect(dbname='edahint', user='postgres', host='localhost', password='postgres')
         # conn_str = (
         #     "DRIVER={PostgreSQL Unicode};"
         #     "DATABASE=edahint;"
@@ -28,6 +28,13 @@ class db:
         # self.__conn = pyodbc.connect(conn_str)
         self.cursor = self.__conn.cursor()
         print('Connected!')
+        self.cursor.execute("""CREATE TABLE IF NOT EXISTS prods (
+            id SERIAL PRIMARY KEY,
+            name_prod VARCHAR(255),
+            price VARCHAR(127),
+            date_end VARCHAR(127),
+            foto_link VARCHAR(255),
+            store VARCHAR(127)""")
 
     def __del__(self):
         self.cursor.close()
