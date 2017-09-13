@@ -1,1 +1,1 @@
-# edahint-server
+# edahint

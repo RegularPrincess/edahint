@@ -16,10 +16,9 @@ class db:
 
     def __init__(self):
         print('Connecting...')
-        self.__conn = pymssql.connect(server='my-edadeal.database.windows.net', user='my-edadeal@my-edadeal',
-                               password='piknikME000', database='my-edadeal    ')
-        # self.__conn = pymssql.connect(server='JMFedorov.mysql.pythonanywhere-services.com', user='JMFedorov',
-        #                               password='piknik000', database='edahint_db')
+        # self.__conn = pymssql.connect(server='my-edadeal.database.windows.net', user='my-edadeal@my-edadeal',
+        #                        password='piknikME000', database='my-edadeal    ')
+        self.__conn = pymssql.connect(server='localhost', user='postgres', password='postgres', database='edahint')
         self.cursor = self.__conn.cursor()
         print('Connected!')
 
