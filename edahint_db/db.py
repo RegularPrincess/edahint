@@ -1,4 +1,4 @@
-import pymssql
+import psycopg2
 
 
 class db:
@@ -16,9 +16,16 @@ class db:
 
     def __init__(self):
         print('Connecting...')
-        # self.__conn = pymssql.connect(server='my-edadeal.database.windows.net', user='my-edadeal@my-edadeal',
-        #                        password='piknikME000', database='my-edadeal    ')
-        self.__conn = pymssql.connect(server='localhost', port=5432, user='postgres', password='postgres', database='edahint')
+        self.__conn = psycopg2.connect(dbname='my-edadeal', user='postgres', host='localhost')
+        # conn_str = (
+        #     "DRIVER={PostgreSQL Unicode};"
+        #     "DATABASE=edahint;"
+        #     "UID=postgres;"
+        #     "PWD=postgres;"
+        #     "SERVER=localhost;"
+        #     "PORT=5432;"
+        #     )
+        # self.__conn = pyodbc.connect(conn_str)
         self.cursor = self.__conn.cursor()
         print('Connected!')
 
