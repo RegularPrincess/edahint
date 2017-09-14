@@ -74,3 +74,11 @@ def compute_hint(list, price_category):
         if price_category == 'high':
             selected_prods.append(high_price_prod(matches))
     return selected_prods
+
+
+def often_meets(spisok):
+    stores = [i.store for i in spisok]
+    d = {i: stores.count(i) for i in stores}
+    for k, v in d.items():
+        if v == max(d.values()):
+            return k

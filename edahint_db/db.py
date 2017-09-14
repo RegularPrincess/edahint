@@ -34,7 +34,7 @@ class db:
             price VARCHAR(127),
             date_end VARCHAR(127),
             foto_link VARCHAR(255),
-            store VARCHAR(127)""")
+            store VARCHAR(127));""")
 
     def __del__(self):
         self.cursor.close()

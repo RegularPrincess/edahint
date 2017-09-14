@@ -10,9 +10,10 @@ app = Flask(__name__)
 
 @app.route('/get_short_hint', methods=['POST'])
 def get_short_hint():
-    # TODO: переделать (метод заглушка)
     json_dict = request.get_json()
-    return jsonify(json_dict)
+    prods = model.compute_hint(json_dict['products'], json_dict['price_level'])
+    favor_store = model.often_meets(prods)
+    return json.dumps(favor_store)
 
 
 @app.route('/get_hint', methods=['POST'])

@@ -11,7 +11,7 @@ def get_page(url):
     response = urllib.request.urlopen(request)
     gzipFile = gzip.GzipFile(fileobj=response)
     data = gzipFile.read()
-    str_data = str(data, encoding='utf-8')
+    str_data = str(data, encoding='unicode')
     with open('test2.http', 'w') as file:
         file.write(str_data)
     return str_data
