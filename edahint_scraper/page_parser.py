@@ -47,11 +47,13 @@ def delete_special_character(obj):
 
 
 def pars_page(html):
+    #отдаем чтмл страницу библиотеке бьютифул суп
     soup = bs(html, 'html.parser')
     products_no_pars = soup.findAll('a', class_='p-offers__offer')
     products = []
     for item in products_no_pars:
         prod = _pars_prod(item)
+        #Убирает все не буквы не цифры и не некоторые символы
         delete_special_character(prod)
         products.append(prod)
     return products

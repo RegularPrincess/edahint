@@ -17,15 +17,7 @@ class db:
     def __init__(self):
         print('Connecting...')
         self.__conn = psycopg2.connect(dbname='edahint', user='postgres', host='localhost', password='postgres')
-        # conn_str = (
-        #     "DRIVER={PostgreSQL Unicode};"
-        #     "DATABASE=edahint;"
-        #     "UID=postgres;"
-        #     "PWD=postgres;"
-        #     "SERVER=localhost;"
-        #     "PORT=5432;"
-        #     )
-        # self.__conn = pyodbc.connect(conn_str)
+
         self.cursor = self.__conn.cursor()
         print('Connected!')
         self.cursor.execute("""CREATE TABLE IF NOT EXISTS prods (

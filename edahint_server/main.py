@@ -1,7 +1,6 @@
 import model
 import json
 from flask import Flask
-from flask import jsonify
 from flask import request
 
 
@@ -20,7 +19,6 @@ def get_short_hint():
 def get_hint():
     json_dict = request.get_json()
     prods = model.compute_hint(json_dict['products'], json_dict['price_level'])
-    print(prods)
     return json.dumps([inst.__dict__ for inst in prods])
 
 
