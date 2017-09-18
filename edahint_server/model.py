@@ -7,6 +7,7 @@ sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
 
 from edahint_db.db import db
 
+# В дата храним список доступных продуктов
 _data = None
 
 
@@ -55,7 +56,7 @@ def high_price_prod(matches):
     return selected_prod
 
 
-def compute_hint(list, price_category):
+def compute_hint(list_prods, price_category):
     # возвращает список предложенных продуктов
     global _data
     if _data is None:
@@ -65,7 +66,7 @@ def compute_hint(list, price_category):
             _data.append(Product(t))
 
     selected_prods = []
-    for obj in list:
+    for obj in list_prods:
         matches = search_all_match(obj)
         if len(matches) == 0:
             continue
@@ -76,8 +77,8 @@ def compute_hint(list, price_category):
     return selected_prods
 
 
-def often_meets(spisok):
-    stores = [i.store for i in spisok]
+def often_meets(list_matched_prods):
+    stores = [i.store for i in list_matched_prods]
     d = {i: stores.count(i) for i in stores}
     for k, v in d.items():
         if v == max(d.values()):
